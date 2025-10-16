@@ -1,0 +1,29 @@
+//REVERSE A STRING USING STACK
+
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+int main() {
+    char str[MAX];         
+    char stack[MAX];       
+    char reversed[MAX];    
+    int top = -1;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        stack[++top] = str[i];//Insertion of elements from str->stack
+    }
+    
+    for (int i = 0; i <= top; i++) {
+        reversed[i] = stack[top - i];
+    }
+    
+    printf("The reversed string %s",reversed);
+        
+}
+
+    
+    
