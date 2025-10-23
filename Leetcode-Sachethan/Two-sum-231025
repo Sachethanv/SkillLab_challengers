@@ -4,7 +4,8 @@ class Solution:
         for i,num in enumerate(nums): #i is index val,num is value
             complement = target-num
             if complement in hashmap:
-                return [hashmap[complement],i] #hashmap[complement] is likke hashmap[3]=0
+            #checks if complemet in hashmap has already been seen, if yes then we have found two key value pairs that add up to target
+                return [hashmap[complement],i]  #hashmap[complement] is likke hashmap[3]=0
             hashmap[num]=i #if hashmap, num is key and i is index
 
 """
