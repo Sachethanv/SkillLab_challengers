@@ -1,0 +1,16 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {} #its nothing but a dictionary, say hashmap{3:0}
+        for i,num in enumerate(nums): #i is index val,num is value
+            complement = target-num
+            if complement in hashmap:
+                return [hashmap[complement],i] #hashmap[complement] is likke hashmap[3]=0
+            hashmap[num]=i #if hashmap, num is key and i is index
+
+"""
+Keys must be unique
+
+If you try to insert the same key again, it overwrites the previous value.
+
+"""
+        
