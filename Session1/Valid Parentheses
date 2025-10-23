@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+//mistakes made in first try 1.type mismacth in stack
+//2.used "OR" instead of "AND" in previous and cureent element check
+//3.missing return value 0
+//INSIDE ELSEIF loop u only check for unbalanced, if all fail then its balanced and return top--;
+int main() {
+    char s[200];
+    char stack[200];  // use char for stack, and larger size for safety
+    int top = -1;
+    
+    printf("Enter the brackets in string: ");
+    scanf("%s", s);
+    
+    int len = strlen(s);
+    bool balanced = true;
+    
+    for(int i = 0; i < len; i++) {
+        if(s[i] == '(' || s[i] == '{' || s[i] == '[') {
+            stack[++top] = s[i];  // push opening bracket
+            
+        }
+        else if(s[i] == ')' || s[i] == '}' || s[i] == ']') {
+            // has 2 main parts i.e 2 if statements 
+            if(top == -1) {
+                // obviously when you have a close before opening it's unbalanced
+                balanced = false;
+                break;
+            }
+            // so just compare the previous stack element with the current stack element when you see a closing bracket
+            if((s[i] == ')' && stack[top] != '(') ||
+               (s[i] == ']' && stack[top] != '[') ||
+               (s[i] == '}' && stack[top] != '{')) {
+                   balanced = false;
+                   break;
+            }
+            top--;  // pop the matching opening bracket
+        }
+    }
+    
+    if(top != -1) {
+        balanced = false;  // leftover opening brackets means unbalanced
+    }
+    
+    if(balanced == true) {
+        printf("true");
+    }
+    else {
+        printf("false");
+    }
+    
+    return 0;
+}
