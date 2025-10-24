@@ -1,0 +1,37 @@
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort() # sorting array as its easier to check if consecutieve elemnets are same
+        #helps identify siilar triplets
+        res = [] #i store the result in this array
+        n = len(nums) #length of the input array
+
+        for i in range(n - 2): #So using n - 2 prevents out-of-range errors and ensures we always have a triplet to check.
+            if i > 0 and nums[i] == nums[i - 1]: #checking if ith value is == to i-1 so we skip
+                continue
+
+            left, right = i + 1, n - 1 #setting up the two pointer array
+
+            while left < right: #right is (n)from the end , left is after the i value
+                total = nums[i] + nums[left] + nums[right] #checking for sums
+
+                if total == 0: # if a sum is found
+                    res.append([nums[i], nums[left], nums[right]]) #im appending answer to the list
+
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1 #skipping index to +1 to avoid having same triplets
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1 
+
+                    left += 1 # tryin to move inward
+                    right -= 1
+
+                elif total < 0:
+                    left += 1 #as we have sroted , toward the ed, as value is in negative
+                else:
+                    right -= 1 # as we have sorted, move toward the end, as value is in +ve
+
+        return res
